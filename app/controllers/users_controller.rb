@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  layout nil
   def index
   end
 

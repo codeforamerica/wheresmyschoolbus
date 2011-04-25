@@ -3,7 +3,16 @@ Wheresmybus::Application.routes.draw do
 
   devise_for :admins
 
-  devise_for :users
+  devise_for :users, :controllers=>{:confirmations=>"users_confirmations"}, :skip=>:registrations do
+    put "/users/confirmations", :to=>"users_confirmations#update", :as=>:update_user_confirmation
+  end
+  as :user do
+    scope "/users" do
+      resource :profile, :controller=>"registrations", :only=>[:edit,:update] do
+        get "edit_password", :as=>"edit_password_of"
+      end
+    end
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

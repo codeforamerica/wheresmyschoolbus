@@ -1,0 +1,30 @@
+<h2>Activate Your Account</h2>
+<% form_for @confirmable, :url => update_user_confirmation_path, :html => {:method => 'put'}, :id => 'activation-form' do |f| %>
+  
+  <% if @confirmable.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@confirmable.errors.count, "error") %> prohibited this group from being saved:</h2>
+
+      <ul>
+      <% @confirmable.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <fieldset>
+    <legend><%= @confirmable.email %></legend>
+    
+    <div class="field">
+      <%= f.label :password,'Password' %><br />
+      <%= f.password_field :password %>
+    </div>
+    <div class="field">
+      <%= f.label :password_confirmation,'Confirm Password' %><br />
+      <%= f.password_field :password_confirmation %>
+    </div>
+    <%= hidden_field_tag :confirmation_token,@confirmation_token %>
+    <p><%= f.submit "Activate" %></p>
+  </fieldset>
+<% end %>

@@ -1,0 +1,2 @@
+class BussesController < ApplicationController
+end

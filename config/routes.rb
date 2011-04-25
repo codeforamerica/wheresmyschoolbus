@@ -1,7 +1,7 @@
 Wheresmybus::Application.routes.draw do
   resources :busses
 
-  resource :users
+  resources :users
 
   devise_for :admins
 

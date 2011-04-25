@@ -1,4 +1,6 @@
-Wheresmybus::Application.routes.draw do
+Wheresmybus::Application.routes.draw do  
+  root :to => 'users#index'
+  
   resources :busses
 
   resources :users

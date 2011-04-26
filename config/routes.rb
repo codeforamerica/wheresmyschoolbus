@@ -1,9 +1,7 @@
 Wheresmybus::Application.routes.draw do  
-  root :to => 'users#index'
+  root :to => 'application#index'
   
   resources :busses
-
-  resources :users
 
   devise_for :admins
 
@@ -17,6 +15,8 @@ Wheresmybus::Application.routes.draw do
       end
     end
   end
+  
+  resources :users #this has to be after the devise_for, so that the devise routes take precedence
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

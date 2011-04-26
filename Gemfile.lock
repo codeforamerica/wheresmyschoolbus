@@ -33,6 +33,7 @@ GEM
     builder (2.1.2)
     compass (0.10.6)
       haml (>= 3.0.4)
+    crack (0.1.8)
     devise (1.2.1)
       bcrypt-ruby (~> 2.1.2)
       orm_adapter (~> 0.0.3)
@@ -40,6 +41,8 @@ GEM
     erubis (2.6.6)
       abstract (>= 1.0.0)
     haml (3.0.25)
+    httparty (0.7.7)
+      crack (= 0.1.8)
     i18n (0.5.0)
     mail (2.2.15)
       activesupport (>= 2.3.6)
@@ -82,5 +85,6 @@ PLATFORMS
 DEPENDENCIES
   compass
   devise
+  httparty
   rails (= 3.0.5)
   sqlite3

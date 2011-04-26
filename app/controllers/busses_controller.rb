@@ -3,7 +3,7 @@ class BussesController < ApplicationController
   before_filter :authenticate_user!
   
   def index
-    @busses = current_user.busses
+    @busses = current_user.busses.map {|b| $zonar.bus(b.fleet_id)}
   end
   
   private

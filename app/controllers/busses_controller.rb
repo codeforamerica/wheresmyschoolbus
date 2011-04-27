@@ -3,7 +3,18 @@ class BussesController < ApplicationController
   before_filter :authenticate_user!
   
   def index
-    @busses = current_user.busses.map {|b| $zonar.bus(b.fleet_id)}
+    @busses = current_user.busses.map do |b| 
+      location = $zonar.bus(b.fleet_id)
+      { 
+        :type => "Point",
+        :coordinates => [
+          location['currentlocations']['asset']['long'],
+          location['currentlocations']['asset']['lat']
+        ]
+      }
+    end
+    
+    
   end
   
   private

@@ -81,6 +81,33 @@
 
       var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
       
+      if (navigator.geolocation) {
+        var timeoutVal = 10 * 1000 * 1000;
+        navigator.geolocation.getCurrentPosition(showPositionOnMap, errorMessage,{ enableHighAccuracy: true, timeout: timeoutVal, maximumAge: 0});
+      }
+      else {
+        console.log("Geolocation is not supported by this browser");
+      }
+
+      function showPositionOnMap(position) {
+        var userPoint = new GeoJSON({
+          type: "Point",
+          coordinates: [position.coords.longitude, position.coords.latitude]
+        }, {
+          icon: "/images/user-location.png"
+        });
+        userPoint.setMap(map);
+      }
+
+      function errorMessage(error) {
+        var errors = { 
+          1: 'Permission denied',
+          2: 'Position unavailable',
+          3: 'Request timeout'
+        };
+        console.log("Error: " + errors[error.code]);
+      }
+      
       var busStyle = {
         icon: "/images/point.png",
         shadow: "/images/shadow.png"

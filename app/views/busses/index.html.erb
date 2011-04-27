@@ -68,9 +68,10 @@
       });
 	  }
 	  
-	  function showMap(points) {
+	  function showMap(features) {
+      var firstPoint = features[0].geometry.coordinates;
       var geocoder = new google.maps.Geocoder();
-      var latlng = new google.maps.LatLng(points[0].coordinates[1], points[0].coordinates[0]);
+      var latlng = new google.maps.LatLng(firstPoint[1], firstPoint[0]);
       var address;				
       var myOptions = {
       	center: latlng,
@@ -84,8 +85,8 @@
         			icon: "/images/point.png",
         			shadow: "/images/shadow.png"
         		};
-      $.each(points, function(i, point) {
-			  var gPoint = new GeoJSON(point, busStyle);
+      $.each(features, function(i, feature) {
+			  var gPoint = new GeoJSON(feature, busStyle);
   			gPoint.setMap(map);  			  
 			})
 

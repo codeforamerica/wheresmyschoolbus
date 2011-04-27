@@ -1,0 +1,15 @@
+<div data-role="page"> 
+	<div data-role="header" data-theme="e" data-position="inline"> 
+		<h1>Bus Details</h1> 
+	</div> 
+
+	<div data-role="content" data-theme="e">
+	  <%- if @bus %>
+  		<h1><%= @bus[:properties]['fleet'] %></h1> 
+  		<p>Heading: <%= @bus[:properties]['heading'] %></p> 
+  		<p>Last Seen: <%= @bus[:properties]['time'] %></p> 
+    <%- else %>
+      <h1>Could not fetch bus info</h1>
+    <%- end %>
+	</div> 
+</div>

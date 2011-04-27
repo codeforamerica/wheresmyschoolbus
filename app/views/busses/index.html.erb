@@ -1,51 +1,51 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html>
   <head>
-	<!-- Change this if you want to allow scaling -->
-	<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+  <!-- Change this if you want to allow scaling -->
+  <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
   <meta http-equiv="Content-type" content="text/html; charset=utf-8">
-	<link rel="stylesheet"  href="stylesheets/jquery.mobile-1.0a4.1.min.css" />
-	
-	<style type="text/css">
-		#icon-container{
-			margin-top: 4em;
-			text-align:center;
-		}
-		#buttons{
-			margin-top: 1em;
-		}
-		#buttons a{
-			margin: 3em 0;
-		}
-		.centered{
-			text-align: center;
-		}
-		.centeredAudio{
-			margin-top: 4em;
-			text-align: center;
-		}
-		#map_canvas { height: 330px; width: 100%; margin: 0px; padding: 0px }
-	</style>
-	
-	<script src="javascripts/jquery.min.js"></script>
-	<script src="javascripts/jquery.mobile-1.0a4.1.min.js"></script>  	 	
-	<script src="javascripts/mustache.js" type="text/javascript" charset="utf-8"></script>
-	<script src="http://maps.google.com/maps/api/js?sensor=true"> </script> 
-	<script src="javascripts/geojson-to-google-maps.js"></script>  
+  <link rel="stylesheet"  href="stylesheets/jquery.mobile-1.0a4.1.min.css" />
+  
+  <style type="text/css">
+    #icon-container{
+      margin-top: 4em;
+      text-align:center;
+    }
+    #buttons{
+      margin-top: 1em;
+    }
+    #buttons a{
+      margin: 3em 0;
+    }
+    .centered{
+      text-align: center;
+    }
+    .centeredAudio{
+      margin-top: 4em;
+      text-align: center;
+    }
+    #map_canvas { height: 330px; width: 100%; margin: 0px; padding: 0px }
+  </style>
+  
+  <script src="javascripts/jquery.min.js"></script>
+  <script src="javascripts/jquery.mobile-1.0a4.1.min.js"></script>       
+  <script src="javascripts/mustache.js" type="text/javascript" charset="utf-8"></script>
+  <script src="http://maps.google.com/maps/api/js?sensor=true"> </script> 
+  <script src="javascripts/geojson-to-google-maps.js"></script>  
   
   <script type="text/javascript" charset="utf-8">
     var busses = JSON.parse('<%= @busses.to_json.html_safe %>');
     var pictureSource;   // picture source for iPhone
-    var useragent; // string determining what our user agent is	
-  	var media;
+    var useragent; // string determining what our user agent is  
+    var media;
        
     $(function() {
       showMap(busses);
     })
-	
-	  function getFleet() {
-	    $.mobile.pageLoading();
-	    $.ajax({
+  
+    function getFleet() {
+      $.mobile.pageLoading();
+      $.ajax({
        url: fleetUrl,
        dataType: 'jsonp',
        success: function(data) {
@@ -55,10 +55,10 @@
          $('#fleetList').html(Mustache.to_html(tmpl, data)).listview('refresh');
        }
      });
-	  }
-	  
-	  function getBus(fleetId) {	    
-	    $.ajax({
+    }
+    
+    function getBus(fleetId) {      
+      $.ajax({
         url: busUrl(fleetId.replace(' ', '%20')),
         dataType: 'jsonp',
         success: function(data) {
@@ -66,58 +66,64 @@
           showMap(data['lat'], data['long']);
         }
       });
-	  }
-	  
-	  function showMap(features) {
+    }
+    
+    function showMap(features) {
       var firstPoint = features[0].geometry.coordinates;
       var geocoder = new google.maps.Geocoder();
       var latlng = new google.maps.LatLng(firstPoint[1], firstPoint[0]);
-      var address;				
+      var address;        
       var myOptions = {
-      	center: latlng,
-      	zoom: 13,
-      	mapTypeId: google.maps.MapTypeId.ROADMAP
+        center: latlng,
+        zoom: 13,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
       };
 
-    	var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+      var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
       
       var busStyle = {
-        			icon: "/images/point.png",
-        			shadow: "/images/shadow.png"
-        		};
+        icon: "/images/point.png",
+        shadow: "/images/shadow.png"
+      };
+      
       $.each(features, function(i, feature) {
-			  var gPoint = new GeoJSON(feature, busStyle);
-  			gPoint.setMap(map);  			  
-			})
+        var gPoint = new GeoJSON(feature, busStyle);
+        gPoint.setMap(map);          
+        google.maps.event.addListener(gPoint, 'click', function() {
+          var url = "/busses/" + feature.properties.fleet;
+          $('.ui-content').append('<a class="dialog" href="' + url + '" data-rel="dialog" data-transition="slidedown"></a>')
+          $('.dialog').click().remove();
+        });
+      })
 
     };    
   </script>
   </head>
   <body>
-  	<div data-role="page" data-theme="c" id="map">		
-  	  <div data-role="header">
-  	    <h1>Bus Location</h1>
-  		</div>
-  		<div data-role="content">
-  		  <div id="map_canvas"></div>
-  		</div>
-  	</div>
+    <div data-role="page" data-theme="c" id="map">    
+      <div data-role="header">
+        <h1>Bus Location</h1>
+      </div>
+      <div data-role="content">
+        <div id="map_canvas"></div>
+      </div>
+    </div>
 
-    <div data-role="page" data-theme="c" id="fleets">		
-  	  <div data-role="header">
-  	    <h1>Bus List</h1>
-  		</div>
-  		<div data-role="content">
-  		  <ul id="fleetList" data-role="listview" data-dividertheme="e">
-    		</ul>
-  		</div>
-  	</div>
-  	
-  	<script type="text/mustache" id="listTemplate">
-    	{{#assets}} 
+    <div data-role="page" data-theme="c" id="fleets">    
+      <div data-role="header">
+        <h1>Bus List</h1>
+      </div>
+      <div data-role="content">
+        <ul id="fleetList" data-role="listview" data-dividertheme="e">
+        </ul>
+      </div>
+    </div>
+    
+    <script type="text/mustache" id="listTemplate">
+      {{#assets}} 
       <li><a href="#map" data-transition="slide" onclick="getBus('{{fleet}}');">{{fleet}}</a></li>
       {{/assets}}
-  	</script>
+    </script>
 
   </body>
 </html>

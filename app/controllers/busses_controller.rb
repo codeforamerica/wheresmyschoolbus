@@ -1,5 +1,6 @@
 class BussesController < ApplicationController
   #TODO: before_filter :auth_user_or_admin
+  layout nil
   before_filter :authenticate_user!
   
   def index

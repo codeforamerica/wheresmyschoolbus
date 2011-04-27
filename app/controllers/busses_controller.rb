@@ -6,6 +6,7 @@ class BussesController < ApplicationController
   def index
     @busses = current_user.busses.map do |b| 
       location = $zonar.bus(b.fleet_id)
+      next unless location.keys.include? 'currentlocations'
       { 
         :type => "Point",
         :coordinates => [
@@ -13,9 +14,7 @@ class BussesController < ApplicationController
           location['currentlocations']['asset']['lat']
         ]
       }
-    end
-    
-    
+    end.compact
   end
   
   private

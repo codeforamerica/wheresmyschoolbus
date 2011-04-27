@@ -1,7 +1,11 @@
 class UsersController < ApplicationController
   before_filter :authenticate_admin!
   def index
-    @users = User.all
+    @users = if params[:q]
+      User.where("email like :q",:q=>"%#{params[:q]}%")
+    else
+      User.all
+    end
 
     respond_to do |format|
       format.html # index.html.erb

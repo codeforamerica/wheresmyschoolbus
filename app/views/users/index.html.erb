@@ -19,5 +19,10 @@
 </table>
 
 <br />
-
+<%= form_for users_path, :html=>{:method=>:get} do |f|%>
+  <div class="field">
+    <%= f.label :search_box, "search"%>
+    <%= f.text_field :search_box,:name=>"q" %>
+  </div>
+<%end%>
 <%= link_to 'New User', new_user_path %>

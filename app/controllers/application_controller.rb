@@ -5,6 +5,8 @@ class ApplicationController < ActionController::Base
       redirect_to :users
     elsif user_signed_in?
       redirect_to :busses
+    else
+      redirect_to new_user_session_path
     end
     #render login page by default
   end

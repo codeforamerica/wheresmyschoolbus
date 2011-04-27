@@ -80,8 +80,12 @@
 
     	var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
       
+      var busStyle = {
+        			icon: "/images/point.png",
+        			shadow: "/images/shadow.png"
+        		};
       $.each(points, function(i, point) {
-			  var gPoint = new GeoJSON(point, null);
+			  var gPoint = new GeoJSON(point, busStyle);
   			gPoint.setMap(map);  			  
 			})
 

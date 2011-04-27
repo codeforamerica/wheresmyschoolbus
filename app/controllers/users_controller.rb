@@ -25,7 +25,9 @@ class UsersController < ApplicationController
   # GET /users/new.xml
   def new
     @user = User.new
-
+    @user.busses_attributes = {"0"=>{"fleet_id"=>"none"}} # add a temp new one
+    @fleet_ids = $zonar.fleet["assetlist"]["assets"].map {|a| a["fleet"]}
+    
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @user }
@@ -35,6 +37,8 @@ class UsersController < ApplicationController
   # GET /users/1/edit
   def edit
     @user = User.find(params[:id])
+    @user.busses_attributes = {"0"=>{"fleet_id"=>"none"}} # add a temp new one
+    @fleet_ids = $zonar.fleet["assetlist"]["assets"].map {|a| a["fleet"]}
   end
 
   # POST /users

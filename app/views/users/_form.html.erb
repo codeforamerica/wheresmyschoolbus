@@ -15,7 +15,13 @@
     <%= f.label :email %><br />
     <%= f.text_field :email %>
   </div>
-  
+  <%= f.fields_for :busses do |bf| %>
+    <div class="field">
+      <%= bf.label :fleet_id, "Bus ID" %><br />
+      <%= bf.select :fleet_id, [nil]+@fleet_ids %>
+    </div>
+  <%end%>
+
   <div class="actions">
     <%= f.submit %>
   </div>

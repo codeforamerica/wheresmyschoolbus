@@ -4,19 +4,13 @@ class BussesController < ApplicationController
   before_filter :authenticate_user!
   
   def index
-    if params[:fleet_id]
-      if bus = Bus.find_by_fleet_id(params[:fleet_id])
-        @busses = fetch_bus_locations([bus])
-      else
-        @busses = []
-      end
-      render :json => @busses.to_json
-    else
-      @busses = fetch_bus_locations(current_user.busses)
-    end
+    @busses = fetch_bus_locations(current_user.busses)
   end
   
   def show
+    if bus = Bus.find_by_fleet_id(params[:id])
+      @bus = fetch_bus_locations([bus]).first
+    end
   end
   
   private

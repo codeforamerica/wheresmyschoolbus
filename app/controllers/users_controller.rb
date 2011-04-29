@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_filter :authenticate_admin!
   def index
     @users = if params[:q]
-      User.where("email like :q",:q=>"%#{params[:q]}%")
+      User.where("email like :q or first_name like :q or last_name like :q",:q=>"%#{params[:q]}%")
     else
       User.all
     end

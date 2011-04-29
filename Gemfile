@@ -6,7 +6,6 @@ gem 'rails', '3.0.5'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'sqlite3'
-gem 'compass'
 gem 'devise'
 gem 'httparty'
 

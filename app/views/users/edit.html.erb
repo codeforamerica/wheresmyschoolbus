@@ -2,7 +2,11 @@
 <div id="edit_user_page" class="user_page">
     <h1>Editing User</h1>
     <%= render 'form' %>
+    <div class="user_links">
+        <%= link_to 'Show', @user %> |
+        <%= link_to 'Back', users_path %>
+    </div>
 </div>
 
-<%= link_to 'Show', @user %> |
-<%= link_to 'Back', users_path %>
+
+

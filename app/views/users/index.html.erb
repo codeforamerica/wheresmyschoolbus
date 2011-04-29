@@ -1,32 +1,34 @@
 <div class="user_page">
-<h1>Listing users</h1>
+    <h1>Listing users</h1>
 
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Email</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
 
-<% @users.each do |user| %>
-  <tr>
-    <td><%= "#{user.last_name}, #{user.first_name}" %></td>
-    <td><%= user.email %></td>
-    <td><%= link_to 'Show', user %></td>
-    <td><%= link_to 'Edit', edit_user_path(user) %></td>
-    <td><%= link_to 'Destroy', user, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
-</table>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= "#{user.last_name}, #{user.first_name}" %></td>
+        <td><%= user.email %></td>
+        <td><%= link_to 'Show', user %></td>
+        <td><%= link_to 'Edit', edit_user_path(user) %></td>
+        <td><%= link_to 'Destroy', user, :confirm => 'Are you sure?', :method => :delete %></td>
+      </tr>
+    <% end %>
+    </table>
 
-<br />
-<%= form_for users_path, :html=>{:method=>:get} do |f|%>
-  <div class="field">
-    <%= f.label :search_box, "search"%>
-    <%= f.text_field :search_box,:name=>"q" %>
-  </div>
-<%end%>
-<%= link_to 'New User', new_user_path %>
+    <br />
+    <%= form_for users_path, :html=>{:method=>:get} do |f|%> <form>
+        <div class="field">
+            <%= f.label :search_box, "search"%>
+            <%= f.text_field :search_box,:name=>"q" %>
+        </div>
+    <%end%></form>
+    <div class="user_links">
+        <%= link_to 'New User', new_user_path %>
+    </div>
 </div>

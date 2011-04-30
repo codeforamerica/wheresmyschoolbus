@@ -54,8 +54,26 @@ h5 { font-size: .9em; }
 	
 }
 .user_links{
+	padding-top:100px;
 	padding-top:50px;
+}
+.user_links a{
+	font-weight:bold;
+	font-size:20px;
+	color:#53534F;
+	background-color:#EDBF00;
+	text-decoration:none;
+	display:block;
+	width:90px;
+	padding:10px;
+	border:1px solid #DDD;
+	text-align:center;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	-o-border-radius:5px;
+	border-radius:5px;	
 }	
+
 
 #footer{
 	font-family: 'News Cycle', arial, serif;
@@ -65,3 +83,5 @@ h5 { font-size: .9em; }
 	width: 100%;
 	min-height: 35px;
 }
+
+

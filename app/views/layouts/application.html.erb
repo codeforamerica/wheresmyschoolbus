@@ -10,7 +10,7 @@
     <div id="header">
            <div id="wmsblogo">
                <%= image_tag "wmsb.png", :alt=>"where's my school bus" %>
-               <a href="/users/login">SIGN OUT</a>
+               <%= link_to "SIGN OUT", destroy_admin_session_path %>
        </div>
        </div>
 <div id="main">

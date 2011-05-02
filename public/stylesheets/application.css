@@ -5,6 +5,14 @@
 
 -------------------------------------------------------------- */
 
+@font-face {
+  font-family: 'Bevan';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Bevan'), url('/fonts/Bevan') format('woff');
+}
+
+
 body {
   font-family: Arial, Helvetica, sans-serif;
 }

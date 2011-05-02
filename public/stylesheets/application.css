@@ -12,17 +12,25 @@
   src: local('Bevan'), url('/fonts/Bevan') format('woff');
 }
 
+@font-face {
+  font-family: 'Oswald';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Oswald '), local('Oswald'), format('woff');
+}
 
 body {
+  font-family: 'Oswald';
   font-family: Arial, Helvetica, sans-serif;
 }
 
 h1, h2, h3, h4, h5 { 
   color: #EDBF00;
+  font-family: 'Oswald';
 }
 
 h1 { font-size: 1.95em;  }
-h2 { font-size: 1.35em;  }
+h2 { font-family: 'Oswald': font-size: 1.35em;  }
 h3 { font-size: 1.25em; }
 h4 { font-size: 1.15em; }
 h5 { font-size: .9em; }

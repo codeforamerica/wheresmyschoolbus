@@ -12,7 +12,11 @@
   <div id="header">
     <div id="wmsblogo">
       <%= image_tag "wmsb.png", :alt=>"where's my school bus" %>
-      <%= link_to "sign out", destroy_admin_session_path %>
+      <% if admin_signed_in? %>
+        <%= link_to "sign out", destroy_admin_session_path %>
+      <% else %>
+        <%= link_to "administrator signin", new_admin_session_path %>
+      <%end%>
     </div>
   </div>
   <div id="main">

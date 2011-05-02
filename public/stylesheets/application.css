@@ -71,10 +71,12 @@ h5 { font-size: .9em; }
 }
 
 #footer{
+  padding-top:5px;
+  font-size:10px;
   font-family: 'News Cycle', arial, serif;
   text-align:center;
   color: #696969;
   background: black;
   width: 100%;
-  min-height: 35px;
+  min-height: 20px;
 }

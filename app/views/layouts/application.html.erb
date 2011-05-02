@@ -9,6 +9,7 @@
 </head>
 
 <body>
+  
   <div id="header">
     <div id="wmsblogo">
       <%= image_tag "wmsb.png", :alt=>"where's my school bus" %>
@@ -19,10 +20,15 @@
       <%end%>
     </div>
   </div>
+  
   <div id="main">
     <div class="user_panel">
       <%= yield %>
     </div>
+  </div>
+  
+  <div id="footer">
+    Made by Code for America in partnership with the City of Boston.
   </div>
 </body>
 

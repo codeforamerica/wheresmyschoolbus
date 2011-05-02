@@ -9,7 +9,7 @@
   font-family: 'Bevan';
   font-style: normal;
   font-weight: normal;
-  src: local('Bevan'), url('/fonts/Bevan') format('woff');
+  src: local('Bevan'), url('/fonts/Bevan.woff') format('woff');
 }
 
 @font-face {

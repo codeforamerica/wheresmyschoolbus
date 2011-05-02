@@ -1,24 +1,25 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <title>Wheresmybus</title>
   <%= stylesheet_link_tag :all %>
   <%= csrf_meta_tag %>
   <%= javascript_include_tag :defaults %>
 </head>
-<body>
-    <div id="header">
-           <div id="wmsblogo">
-               <%= image_tag "wmsb.png", :alt=>"where's my school bus" %>
-               <%= link_to "SIGN OUT", destroy_admin_session_path %>
-       </div>
-       </div>
-<div id="main">
-    <div class="user_panel">
-        <%= yield %>
-    </div>
-</div>
-    
 
+<body>
+  <div id="header">
+    <div id="wmsblogo">
+      <%= image_tag "wmsb.png", :alt=>"where's my school bus" %>
+      <%= link_to "sign out", destroy_admin_session_path %>
+    </div>
+  </div>
+  <div id="main">
+    <div class="user_panel">
+      <%= yield %>
+    </div>
+  </div>
 </body>
+
 </html>

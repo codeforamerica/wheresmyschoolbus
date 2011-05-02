@@ -1,12 +1,12 @@
 <table>
-    <tr>
-        <th>Name</th>
-        <th>Email</th>
-        <th></th>
-        <th></th>
-        <th></th>
-    </tr>
- <% @users.each do |user| %>
+  <tr>
+    <th>Name</th>
+    <th>Email</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+<% @users.each do |user| %>
   <tr>
     <td><%= "#{user.last_name}, #{user.first_name}" %></td>
     <td><%= user.email %></td>
@@ -19,11 +19,11 @@
 
 <br />
 <%= form_for users_path, :html=>{:method=>:get} do |f|%>
-    <div class="field">
-        <%= f.label :search_box, "search"%>
-        <%= f.text_field :search_box,:name=>"q" %>
-    </div>
+  <div class="field">
+    <%= f.label :search_box, "search"%>
+    <%= f.text_field :search_box,:name=>"q" %>
+  </div>
 <%end%>
 <div class="user_links">
-    <%= link_to 'New User', new_user_path %>
+  <%= link_to 'New User', new_user_path %>
 </div>

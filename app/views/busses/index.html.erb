@@ -22,7 +22,7 @@
         <h1>Bus Location</h1>
       </div>
       <div data-role="content">
-          <%= select_tag "bus_selector", @buses %>
+        <%= select "bus_selector", "bus_selector", @busses.map {|b| b[:properties]["fleet"]}%>
         <div id="map_canvas"></div>
       </div>
     </div>

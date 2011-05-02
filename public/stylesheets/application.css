@@ -56,6 +56,7 @@ h5 { font-size: .9em; }
   left: 400px;
   padding-top:45px;
   padding-bottom:20px;
+  display: inline-block; /*magic to make this div only as wide as it needs to be, instead of pushing the edge of the browser uneccessarily past the edge of the browser*/
 }
 
 .user_links{

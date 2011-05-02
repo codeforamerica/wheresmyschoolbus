@@ -1,6 +1,7 @@
 var pictureSource;   // picture source for iPhone
 var useragent; // string determining what our user agent is  
 var media;
+var map;
 
 function getFleet() {
   $.mobile.pageLoading();
@@ -16,19 +17,7 @@ function getFleet() {
  });
 }
 
-function showMap(feature) {
-  var firstPoint = feature.geometry.coordinates;
-  var geocoder = new google.maps.Geocoder();
-  var latlng = new google.maps.LatLng(firstPoint[1], firstPoint[0]);
-  var address;        
-  var myOptions = {
-    center: latlng,
-    zoom: 13,
-    mapTypeId: google.maps.MapTypeId.ROADMAP
-  };
-
-  var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
-  
+function showUser() {
   if (navigator.geolocation) {
     var timeoutVal = 10 * 1000 * 1000;
     navigator.geolocation.getCurrentPosition(showPositionOnMap, errorMessage,{ enableHighAccuracy: true, timeout: timeoutVal, maximumAge: 0});
@@ -37,24 +26,39 @@ function showMap(feature) {
     console.log("Geolocation is not supported by this browser");
   }
 
-  function showPositionOnMap(position) {
-    var userPoint = new GeoJSON({
-      type: "Point",
-      coordinates: [position.coords.longitude, position.coords.latitude]
-    }, {
-      icon: "/images/user-location.png"
-    });
-    userPoint.setMap(map);
-  }
+}
 
-  function errorMessage(error) {
-    var errors = { 
-      1: 'Permission denied',
-      2: 'Position unavailable',
-      3: 'Request timeout'
-    };
-    console.log("Error: " + errors[error.code]);
-  }
+function showPositionOnMap(position) {
+  var userPoint = new GeoJSON({
+    type: "Point",
+    coordinates: [position.coords.longitude, position.coords.latitude]
+  }, {
+    icon: "/images/user-location.png"
+  });
+  userPoint.setMap(map);
+}
+
+function errorMessage(error) {
+  var errors = { 
+    1: 'Permission denied',
+    2: 'Position unavailable',
+    3: 'Request timeout'
+  };
+  console.log("Error: " + errors[error.code]);
+}
+
+function showMap(feature, div) {
+  var map = $(div).find('#map_canvas')[0];
+  var firstPoint = feature.geometry.coordinates;
+  var latlng = new google.maps.LatLng(firstPoint[1], firstPoint[0]);
+  var address;        
+  var myOptions = {
+    center: latlng,
+    zoom: 13,
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+  };
+
+  map = new google.maps.Map(map, myOptions);
   
   var busStyle = {
     icon: "/images/point.png",

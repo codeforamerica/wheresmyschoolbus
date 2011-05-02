@@ -1,10 +1,6 @@
 var pictureSource;   // picture source for iPhone
 var useragent; // string determining what our user agent is  
 var media;
-   
-$(function() {
-  showMap(busses);
-})
 
 function getFleet() {
   $.mobile.pageLoading();
@@ -20,19 +16,8 @@ function getFleet() {
  });
 }
 
-function getBus(fleetId) {      
-  $.ajax({
-    url: busUrl(fleetId.replace(' ', '%20')),
-    dataType: 'jsonp',
-    success: function(data) {
-      var data = data['currentlocations']['asset'];
-      showMap(data['lat'], data['long']);
-    }
-  });
-}
-
-function showMap(features) {
-  var firstPoint = features[0].geometry.coordinates;
+function showMap(feature) {
+  var firstPoint = feature.geometry.coordinates;
   var geocoder = new google.maps.Geocoder();
   var latlng = new google.maps.LatLng(firstPoint[1], firstPoint[0]);
   var address;        
@@ -75,15 +60,13 @@ function showMap(features) {
     icon: "/images/point.png",
     shadow: "/images/shadow.png"
   };
-  
-  $.each(features, function(i, feature) {
-    var gPoint = new GeoJSON(feature, busStyle);
-    gPoint.setMap(map);          
-    google.maps.event.addListener(gPoint, 'click', function() {
-      var url = "/busses/" + feature.properties.fleet;
-      $('.ui-content').append('<a class="dialog" href="' + url + '" data-rel="dialog" data-transition="flip"></a>')
-      $('.dialog').click().remove();
-    });
-  })
+
+  var gPoint = new GeoJSON(feature, busStyle);
+  gPoint.setMap(map);          
+  google.maps.event.addListener(gPoint, 'click', function() {
+    var url = "/busses/" + feature.properties.fleet;
+    $('.ui-content').append('<a class="dialog" href="' + url + '" data-rel="dialog" data-transition="flip"></a>')
+    $('.dialog').click().remove();
+  });
 
 };

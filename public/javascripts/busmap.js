@@ -69,7 +69,7 @@ function showMap(feature, div) {
   gPoint.setMap(map);          
   google.maps.event.addListener(gPoint, 'click', function() {
     var url = "/busses/" + feature.properties.fleet;
-    $('.ui-content').append('<a class="dialog" href="' + url + '" data-rel="dialog" data-transition="flip"></a>')
+    $('.ui-content', div).append('<a class="dialog" href="' + url + '?details=true" data-rel="dialog" data-transition="flip"></a>');
     $('.dialog').click().remove();
   });
 

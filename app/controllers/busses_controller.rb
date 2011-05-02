@@ -11,6 +11,7 @@ class BussesController < ApplicationController
     if bus = Bus.find_by_fleet_id(params[:id])
       @bus = fetch_bus_locations([bus]).first
     end
+    render :partial => 'details' if params[:details]
   end
   
   private

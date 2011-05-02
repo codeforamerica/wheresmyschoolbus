@@ -16,7 +16,7 @@
   font-family: 'Oswald';
   font-style: normal;
   font-weight: normal;
-  src: local('Oswald '), local('Oswald'), format('woff');
+  src: local('Oswald '), url('/fonts/Oswald.woff') format('woff');
 }
 
 body {

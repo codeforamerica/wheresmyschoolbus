@@ -20,6 +20,7 @@
     <div data-role="page" data-theme="c" id="map">    
       <div data-role="header">
         <h1>Bus Location</h1>
+         <%= link_to "sign out", destroy_user_session_path %>
       </div>
       <div data-role="content">
           <%= select_tag "bus_selector", @buses %>

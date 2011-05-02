@@ -1,3 +1,7 @@
+<% content_for :signin_path do %>
+  <%= link_to "user sign in", new_user_session_path %>
+<%end%>
+
 <h2>Administrator Sign in</h2>
 
 <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>

@@ -16,7 +16,11 @@
       <% if admin_signed_in? %>
         <%= link_to "sign out", destroy_admin_session_path %>
       <% else %>
-        <%= link_to "administrator signin", new_admin_session_path %>
+        <% if content_for? :signin_path %>
+          <%= yield :signin_path %>
+        <% else %>
+          <%= link_to "administrator signin", new_admin_session_path %>
+        <%end%>
       <%end%>
     </div>
   </div>

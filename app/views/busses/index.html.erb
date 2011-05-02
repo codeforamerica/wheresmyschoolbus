@@ -22,6 +22,7 @@
         <h1>Bus Location</h1>
       </div>
       <div data-role="content">
+          <%= select_tag "bus_selector", @buses %>
         <div id="map_canvas"></div>
       </div>
     </div>

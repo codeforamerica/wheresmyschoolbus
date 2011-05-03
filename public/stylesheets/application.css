@@ -84,6 +84,10 @@ table {
   display: inline-block; /*magic to make this div only as wide as it needs to be, instead of pushing the edge of the browser uneccessarily past the edge of the browser*/
 }
 
+input[type="submit"]{
+  background-color: #E8C100;
+}
+
 .user_links{
   padding-top:30px;
 }

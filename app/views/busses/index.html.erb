@@ -29,7 +29,7 @@
     <div data-role="page" data-theme="b" id="home"> 
       <div data-role="header">
         <h1>Bus Location</h1>
-         <%= link_to "sign out", destroy_user_session_path %>
+         <%= link_to "sign out", destroy_user_session_path, :"data-ajax"=>"false" %>
       </div>
       <div data-role="content"> 
         <ul data-role="listview" data-inset="true" data-theme="c" data-dividertheme="b"> 

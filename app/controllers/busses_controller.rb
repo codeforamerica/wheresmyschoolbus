@@ -1,15 +1,23 @@
 class BussesController < ApplicationController
   #TODO: before_filter :auth_user_or_admin
   layout nil
-  before_filter :authenticate_user!
+  before_filter :auth_user_or_admin!
   
   def index
-    @busses = fetch_bus_locations(current_user.busses)
+    if user_signed_in?
+      @busses = fetch_bus_locations(current_user.busses)
+    else #admin
+      @busses = [] #$zonar.fleet["assetlist"]["assets"].map {|b| {:properties=>{'fleet'=>b['fleet']}} }#fetch_all_bus_locations
+    end
   end
   
   def show
-    if bus = Bus.find_by_fleet_id(params[:id])
-      @bus = fetch_bus_locations([bus]).first
+    if user_signed_in?
+      if bus = current_user.busses.find_by_fleet_id(params[:id])
+        @bus = fetch_bus_locations([bus]).first
+      end
+    else #admin can view all
+      @bus = fetch_bus_locations([Bus.new(:fleet_id=>params[:id])]).first
     end
     render :partial => 'details' if params[:details]
   end
@@ -37,7 +45,7 @@ class BussesController < ApplicationController
     }
   end
   
-  def auth_user_or_admin
-    #TODO: write
+  def auth_user_or_admin!
+    authenticate_user! unless user_signed_in? or admin_signed_in?
   end
 end

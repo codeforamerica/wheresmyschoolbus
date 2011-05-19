@@ -1,7 +1,11 @@
 Wheresmybus::Application.routes.draw do  
   root :to => 'application#index'
-  
-  resources :busses
+
+  resources :busses do
+    member do
+      get 'path'
+    end
+  end
 
   devise_for :admins
 

@@ -22,29 +22,41 @@ class BussesController < ApplicationController
     render :partial => 'details' if params[:details]
   end
   
+  def path
+    respond_to do |format|
+      format.json  { render :json => fetch_bus_path(params[:id]) }
+    end
+  end
+  
   private
   def fetch_bus_locations(busses)
     busses.map do |b|
       location = $zonar.bus(b.fleet_id)
       next unless location.keys.include? 'currentlocations'
-      bus_geojson_from(location)
+      {
+        :type => "Feature",
+        :geometry => {
+          :type => "Point",
+          :coordinates => [
+            location['currentlocations']['asset'].delete('long'),
+            location['currentlocations']['asset'].delete('lat')
+          ]
+        },
+        :properties => location['currentlocations']['asset']
+      }
     end.compact
   end
   
-  def bus_geojson_from(location)
+  def fetch_bus_path(bus)
+    coordinates = $zonar.path(bus)['pathevents']['assets'][0]['events'].map do |location|
+      [ location['lng'], location['lat'] ]
+    end
     {
-      :type => "Feature",
-      :geometry => {
-        :type => "Point",
-        :coordinates => [
-          location['currentlocations']['asset'].delete('long'),
-          location['currentlocations']['asset'].delete('lat')
-        ]
-      },
-      :properties => location['currentlocations']['asset']
+      :type => "LineString",
+      :coordinates => coordinates
     }
   end
-  
+
   def auth_user_or_admin!
     authenticate_user! unless user_signed_in? or admin_signed_in?
   end

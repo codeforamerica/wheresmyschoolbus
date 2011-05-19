@@ -47,8 +47,14 @@ function errorMessage(error) {
   console.log("Error: " + errors[error.code]);
 }
 
+function showPath(bus, callback) {
+  $.getJSON('/busses/' + bus + '/path.json', function(path) {
+    callback(path);
+  })
+}
+
 function showMap(feature, div) {
-  var map = $(div).find('#map_canvas')[0];
+  var mapDiv = $(div).find('#map_canvas')[0];
   var firstPoint = feature.geometry.coordinates;
   var latlng = new google.maps.LatLng(firstPoint[1], firstPoint[0]);
   var address;        
@@ -58,7 +64,7 @@ function showMap(feature, div) {
     mapTypeId: google.maps.MapTypeId.ROADMAP
   };
 
-  map = new google.maps.Map(map, myOptions);
+  map = new google.maps.Map(mapDiv, myOptions);
   
   var busStyle = {
     icon: "/images/point.png",
@@ -72,5 +78,7 @@ function showMap(feature, div) {
     $('.ui-content', div).append('<a class="dialog" href="' + url + '?details=true" data-rel="dialog" data-transition="flip"></a>');
     $('.dialog').click().remove();
   });
-
+  showPath(feature.properties.fleet, function(path) {
+    new GeoJSON(path).setMap(map);
+  });
 };

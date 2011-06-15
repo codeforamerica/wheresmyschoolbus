@@ -33,6 +33,8 @@ class BussesController < ApplicationController
     busses.map do |b|
       location = $zonar.bus(b.fleet_id)
       next unless location.keys.include? 'currentlocations'
+      time = location['currentlocations']['asset']['time'].gsub("EDT", "")
+      location['currentlocations']['asset']['time'] = Chronic.parse(time).to_s
       {
         :type => "Feature",
         :geometry => {
@@ -48,13 +50,18 @@ class BussesController < ApplicationController
   end
   
   def fetch_bus_path(bus)
-    coordinates = $zonar.path(bus)['pathevents']['assets'][0]['events'].map do |location|
-      [ location['lng'], location['lat'] ]
+    path = $zonar.path(bus)
+    if path['pathevents']['assets']
+      coordinates = $zonar.path(bus)['pathevents']['assets'][0]['events'].map do |location|
+        [ location['lng'], location['lat'] ]
+      end
+      return {
+        :type => "LineString",
+        :coordinates => coordinates
+      }
+    else
+      return {}
     end
-    {
-      :type => "LineString",
-      :coordinates => coordinates
-    }
   end
 
   def auth_user_or_admin!

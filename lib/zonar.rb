@@ -1,11 +1,11 @@
-require 'httparty'
+require 'net/http'
+require 'crack'
 
 module Zonar
   class Client
     def initialize(subdomain, username, password)
       @username, @password = username, password
-      @api = "http://#{subdomain}.zonarsystems.net/interface.php"
-      @user_agent = "User-Agent: curl/7.19.7 (universal-apple-darwin10.0) libcurl/7.19.7 OpenSSL/0.9.8l zlib/1.2.3"
+      @api = "#{subdomain}.zonarsystems.net"
     end
 
 	  # gets all fleet_ids in the fleet.
@@ -17,7 +17,7 @@ module Zonar
   	# gets current location of single bus
     def bus(fleet_id)
       params = {:username => @username, :password => @password, :action => 'showposition', :type => "Standard", :logvers => "3", :operation => 'current', :format => 'xml', :reqtype => "fleet", :target => fleet_id.gsub(' ', '%20')}
-      fetch(params)
+      fetch(params, 'xml')
     end
     
     # gets past locations for a single bus
@@ -28,8 +28,32 @@ module Zonar
       fetch(params)
     end
     
-    def fetch(params)
-      HTTParty.get(@api, {:query => params, :headers => {"User-Agent" => @user_agent}}).parsed_response
+    def fetch(params, format='json')
+      data = get(params)
+      if format == 'xml'
+        return Crack::XML.parse(data.body)
+      else
+        return Crack::JSON.parse(data.body)
+      end
+    end
+    
+    def get(uri)
+      request(Net::HTTP::Get.new("/interface.php?#{uri.to_query}"))
+    end
+
+    def request(req)
+      res = Net::HTTP.start(@api, "80") { |http| http.request(req) }
+      unless res.kind_of?(Net::HTTPSuccess)
+        handle_error(req, res)
+      end
+      res
+    end
+
+    private
+
+    def handle_error(req, res)
+      e = RuntimeError.new("#{res.code}:#{res.message}\nMETHOD:#{req.method}\nURI:#{req.path}\n#{res.body}")
+      raise e
     end
   end
 end

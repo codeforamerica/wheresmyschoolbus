@@ -1,28 +1,52 @@
-<%= form_for(@user) do |f| %>
-  <% if @user.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+<div id="content" class="page-content clear-block">
+  <div id="content-wrapper">
+    <div>
+      <div class="form form-layout-default clear-block">
+        <%= form_for(@user) do |f| %>
+          <% if @user.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
 
-      <ul>
-      <% @user.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+              <ul>
+              <% @user.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+              <% end %>
+              </ul>
+            </div>
+          <% end %>
+          <div class="column-wrapper clear-block">
+            <fieldset class="menu-item-form fieldset titled collapsible collapsed tao-processed">
+              <legend><span class="fieldset-title"><a href="#fieldset" class="active">User Details</a></span></legend>
+              <div class="fieldset-content clear-block ">
+                <div class="form-item form-item-labeled" id="edit-menu-link-title-wrapper">
+                  <%= f.label :email %><br />
+                  <%= f.text_field :email, {:class => "form-text fluid"}%>
+                  <div class="description">
+                    What is the e-mail address of the user? They will use this to log in.
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+            <fieldset class="menu-item-form fieldset titled collapsible collapsed tao-processed">
+              <legend><span class="fieldset-title"><a href="#fieldset" class="active">Busses</a></span></legend>
+              <div class="fieldset-content clear-block ">
+              <%= f.fields_for :busses do |bf| %>
+                  <div class="form-item form-item-labeled" id="edit-menu-link-title-wrapper">
+                    <%= bf.label :fleet_id, "Bus ID" %><br />
+                    <%= bf.select :fleet_id, [nil]+@fleet_ids, {}, {:class => "form-select"} %>
+                    <div class="description">
+                      Choose a bus that this user is allowed to see the location of.
+                    </div>
+                  </div>
+              <%end%>
+            </div>                      
+            </fieldset>
+            <div class="buttons">
+              <%= f.submit "save", {:class => "form-submit"} %>
+            </div>
+          </div>
+        <% end %>
+      </div>
     </div>
-  <% end %>
-  
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.text_field :email %>
   </div>
-  <%= f.fields_for :busses do |bf| %>
-    <div class="field">
-      <%= bf.label :fleet_id, "Bus ID" %><br />
-      <%= bf.select :fleet_id, [nil]+@fleet_ids %>
-    </div>
-  <%end%>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+</div>

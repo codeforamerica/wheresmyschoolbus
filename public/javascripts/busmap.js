@@ -79,6 +79,6 @@ function showMap(feature, div) {
     $('.dialog').click().remove();
   });
   showPath(feature.properties.fleet, function(path) {
-    new GeoJSON(path).setMap(map);
+	if (path.coordinates) new GeoJSON(path).setMap(map);
   });
 };

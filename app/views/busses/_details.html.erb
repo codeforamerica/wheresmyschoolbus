@@ -7,7 +7,7 @@
 	  <%- if @bus %>
   		<h1><%= @bus[:properties]['fleet'] %></h1> 
   		<p>Heading: <%= @bus[:properties]['heading'] %></p> 
-  		<p>Last Seen: <%= @bus[:properties]['time'] %></p> 
+  		<p>Last seen: <%= time_ago_in_words(@bus[:properties]['time']) %> ago</p> 
     <%- else %>
       <h1>Could not fetch bus info</h1>
     <%- end %>

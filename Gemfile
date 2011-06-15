@@ -8,7 +8,6 @@ gem 'rails', '3.0.5'
 gem 'sqlite3'
 gem 'devise'
 gem 'crack'
-gem 'chronic'
 
 # Use unicorn as the web server
 # gem 'unicorn'

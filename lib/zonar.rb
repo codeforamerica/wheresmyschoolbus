@@ -28,6 +28,14 @@ module Zonar
       fetch(params)
     end
     
+    # gets busses with recent movement activity
+    def recent(since=900)
+      now = Time.now.to_i
+      past = now - since # default 900 = 15 minutes ago
+      params = {:username => @username, :password => @password, :action => 'showposition', :version => "2", :operation => 'assetactivity', :format => 'xml', :start => past, :end => now}
+      fetch(params, 'xml')
+    end
+    
     def fetch(params, format='json')
       data = get(params)
       if format == 'xml'

@@ -33,8 +33,8 @@ class BussesController < ApplicationController
     busses.map do |b|
       location = $zonar.bus(b.fleet_id)
       next unless location.keys.include? 'currentlocations'
-      time = location['currentlocations']['asset']['time'].gsub("EDT", "")
-      location['currentlocations']['asset']['time'] = Chronic.parse(time).to_s
+      time = location['currentlocations']['asset']['time']
+      location['currentlocations']['asset']['time'] = Time.parse(time)
       {
         :type => "Feature",
         :geometry => {

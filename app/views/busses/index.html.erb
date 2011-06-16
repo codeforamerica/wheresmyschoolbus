@@ -30,20 +30,24 @@
   <body>
     <div data-role="page" data-theme="b" id="home"> 
       <div data-role="header">
-        <h1>Bus Location</h1>
+        <h1>Bus Locations</h1>
          <%= link_to "sign out", destroy_user_session_path, :"data-ajax"=>"false" %>
       </div>
       <div data-role="content"> 
-        <ul data-role="listview" data-inset="true" data-theme="c" data-dividertheme="b"> 
-    			<li data-role="list-divider">Busses</li>
-    			<%- @busses.each do |bus| %>
-      			<li>
-      			  <a href="/busses/<%= bus[:properties]['fleet'] %>">
-      			    <%= bus[:properties]['fleet'] %>
-      			  </a>
-      			</li> 
-    			<%- end %>
-  			</ul>
+          <% if @busses.size > 0 -%>
+            <ul data-role="listview" data-inset="true" data-theme="c" data-dividertheme="b"> 
+              <li data-role="list-divider">Busses</li>
+        			<%- @busses.each do |bus| %>
+          			<li>
+          			  <a href="/busses/<%= bus[:properties]['fleet'] %>">
+          			    <%= bus[:properties]['fleet'] %>
+          			  </a>
+          			</li> 
+        			<%- end %>
+      			</ul>
+          <% else -%>
+            <p>You haven't been granted access to view any busses yet.</p>
+          <% end -%>
   		</div>
     </div>
   </body>

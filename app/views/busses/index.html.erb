@@ -30,8 +30,11 @@
   <body>
     <div data-role="page" data-theme="b" id="home"> 
       <div data-role="header">
-        <h1>Bus Locations</h1>
-         <%= link_to "sign out", destroy_user_session_path, :"data-ajax"=>"false" %>
+        <h1>My Busses</h1>
+        <%= link_to "Sign Out", destroy_user_session_path, :"data-ajax"=>"false" %>
+        <% if @busses.size > 0 -%>
+          <a href="#edit_names" data-role="button" data-icon="delete">Edit Names</a>
+        <% end -%>
       </div>
       <div data-role="content"> 
           <% if @busses.size > 0 -%>
@@ -50,5 +53,26 @@
           <% end -%>
   		</div>
     </div>
+    
+    <% if @busses.size > 0 -%>
+      <div data-role="page" data-theme="b" id="edit_names"> 
+        <div data-role="header">
+          <h1>Edit Bus Names</h1>
+        </div>
+        <div data-role="content"> 
+          <form action="/update_names" method="post"> 
+            <fieldset> 
+              <%- @busses.each do |bus| %>
+                <div data-role="fieldcontain">
+                    <label for="name">Bus Nickname:</label>
+                    <input type="text" name="<%= bus[:properties]['fleet'] %>" id="name" value="<%= bus[:properties]['fleet'] %>"  />
+                </div>
+              <%- end %>
+              <button type="submit" data-theme="a" name="submit" value="true">Update Names</button> 
+            </fieldset> 
+          </form>
+    		</div>
+      </div>
+    <% end -%>
   </body>
 </html>

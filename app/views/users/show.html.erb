@@ -2,7 +2,7 @@
 
 <div id="edit_user_page" class="user_page">
   <div class="user_links">
-    <%= link_to 'Edit', edit_user_path(@user) %> |
-    <%= link_to 'Back', users_path %>
+    <%= link_to 'Edit Details', edit_user_path(@user), {:class => "button"} %>
+    <%= link_to 'Go Back', users_path, {:class => "button"} %>
   </div>
 </div>

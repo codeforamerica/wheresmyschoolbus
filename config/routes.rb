@@ -20,8 +20,11 @@ Wheresmybus::Application.routes.draw do
     end
   end
   
-  resources :users #this has to be after the devise_for, so that the devise routes take precedence
-
+  # this has to be after the devise_for, so that the devise routes take precedence
+  resources :users
+  
+  get "/welcome" => "users#splash"
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

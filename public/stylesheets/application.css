@@ -18,12 +18,6 @@
   font-weight: normal;
   src: local('Oswald '), url('/fonts/Oswald.woff') format('woff');
 }
-@font-face {
-  font-family: 'News Cycle';
-  font-style: normal;
-  font-weight: normal;
-  src: local('News Cycle'), url('/fonts/NewsCycle') format('woff');
-}
 
 body {
   font-family: 'Oswald';

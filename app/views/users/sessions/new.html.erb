@@ -1,29 +1,43 @@
-<h1>Sign in</h1>
-
-<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password %>
-  </div>
-
-  <% if devise_mapping.rememberable? -%>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+<div id="content" class="page-content clear-block">
+  <div id="content-wrapper">
+    <div>
+      <div class="form form-layout-default clear-block">
+        <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+          <div class="column-wrapper clear-block">
+            <fieldset class="menu-item-form fieldset titled collapsible collapsed tao-processed">
+              <legend><span class="fieldset-title"><a href="#fieldset" class="active"><h2>User Sign in</h2></a></span></legend>
+              <div class="fieldset-content clear-block ">
+                <div class="form-item form-item-labeled" id="edit-menu-link-title-wrapper">
+                  <%= f.label :email %><br />
+                  <%= f.email_field :email, {:class => "form-text fluid"}%>
+                  <div class="description">
+                    What is your e-mail address?
+                  </div>
+                </div>
+                <div class="form-item form-item-labeled" id="edit-menu-link-title-wrapper">
+                  <%= f.label :password %><br />
+                  <%= f.password_field :password, {:class => "form-text fluid"}%>
+                  <div class="description">
+                    What is your password?
+                  </div>
+                </div>
+                <div class="form-item form-item-labeled" id="edit-menu-link-title-wrapper">
+                  <% if devise_mapping.rememberable? -%>
+                    <p><%= f.check_box :remember_me %> <%= f.label :remember_me %></p>
+                  <% end -%>
+                </div>
+              </div>
+            </fieldset>
+            <div class="buttons">
+              <%= f.submit "save", {:class => "form-submit"} %>
+            </div>
+          </div>
+        <% end %>
+        <div class="user_links">
+          <%= render :partial => "devise/shared/links" %>
+        </div>
+      </div>
     </div>
-  <% end -%>
-
-  <div class="field">
-    <%= f.submit "Sign in" %>
   </div>
-<% end %>
-
-<div class="user_links">
-  <%= render :partial => "devise/shared/links" %>
 </div>
 

@@ -1,5 +1,6 @@
 require 'net/http'
 require 'crack'
+require 'json'
 
 module Zonar
   class Client
@@ -41,7 +42,7 @@ module Zonar
       if format == 'xml'
         return Crack::XML.parse(data.body)
       else
-        return Crack::JSON.parse(data.body)
+        return JSON.parse(data.body)
       end
     end
     

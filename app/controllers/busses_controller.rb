@@ -28,20 +28,16 @@ class BussesController < ApplicationController
     end
   end
   
-    def update_nicknames
+  def update_nicknames
     @user = current_user
     allowable_busses = params[:user][:busses_attributes].select {|i,b| b["id"].present?}
     respond_to do |format|
       if @user.update_attributes(:busses_attributes=>allowable_busses)
         @user.save
-        #format.html { redirect_to(@user, :notice => 'User was successfully updated.') }
-        #format.xml  { head :ok }
-        puts "SUCCESS"
+        format.html { render :partial => 'success' }
       else
         @fleet_ids = $zonar.fleet["assetlist"]["assets"].map {|a| a["fleet"]}
-        #format.html { render :action => "edit" }
-        #format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
-        puts "FAILURE"
+        format.html { render :partial => 'fail' }
       end
     end
   end
@@ -62,7 +58,7 @@ class BussesController < ApplicationController
             location['currentlocations']['asset'].delete('lat')
           ]
         },
-        :properties => location['currentlocations']['asset']
+        :properties => location['currentlocations']['asset'].merge({"nickname" => b.nickname})
       }
     end.compact
   end

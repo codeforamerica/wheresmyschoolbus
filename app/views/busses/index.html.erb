@@ -26,6 +26,9 @@
         $('.go_home').live('click', function(e) {
           window.location = "/";
         })
+        $('#bus_refresh').live('click', function(e) {
+          showBusOnMap(currentBus.feature);
+        })
       })
     </script>
     <script src="javascripts/busmap.js" type="text/javascript"></script>

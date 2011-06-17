@@ -1,6 +1,8 @@
 var pictureSource;   // picture source for iPhone
 var useragent; // string determining what our user agent is  
 var media;
+var currentMapDiv;
+var currentBus = {};
 var map;
 
 function getFleet() {
@@ -38,6 +40,33 @@ function showPositionOnMap(position) {
   userPoint.setMap(map);
 }
 
+function showBusOnMap(feature) {
+  currentBus.feature = feature;
+  
+  var busStyle = {
+    icon: "/images/point.png",
+    shadow: "/images/shadow.png"
+  };
+
+  if (currentBus.gPoint) currentBus.gPoint.setMap(null);
+  currentBus.gPoint = new GeoJSON(feature, busStyle);
+  currentBus.gPoint.setMap(map);    
+        
+  google.maps.event.addListener(currentBus.gPoint, 'click', function() {
+    var url = "/busses/" + feature.properties.fleet;
+    $('.ui-content', currentMapDiv).append('<a class="dialog" href="' + url + '?details=true" data-rel="dialog" data-transition="flip"></a>');
+    $('.dialog').click().remove();
+  });
+  
+  showPath(currentBus.feature.properties.fleet, function(path) {
+	  if (path.coordinates) {
+  	  if (currentBus.path) currentBus.path.setMap(null);
+  	  currentBus.path = new GeoJSON(path);
+  	  currentBus.path.setMap(map);
+    }
+  });
+}
+
 function errorMessage(error) {
   var errors = { 
     1: 'Permission denied',
@@ -54,6 +83,7 @@ function showPath(bus, callback) {
 }
 
 function showMap(feature, div) {
+  currentMapDiv = div;
   var mapDiv = $(div).find('#map_canvas')[0];
   var firstPoint = feature.geometry.coordinates;
   var latlng = new google.maps.LatLng(firstPoint[1], firstPoint[0]);
@@ -66,19 +96,5 @@ function showMap(feature, div) {
 
   map = new google.maps.Map(mapDiv, myOptions);
   
-  var busStyle = {
-    icon: "/images/point.png",
-    shadow: "/images/shadow.png"
-  };
-
-  var gPoint = new GeoJSON(feature, busStyle);
-  gPoint.setMap(map);          
-  google.maps.event.addListener(gPoint, 'click', function() {
-    var url = "/busses/" + feature.properties.fleet;
-    $('.ui-content', div).append('<a class="dialog" href="' + url + '?details=true" data-rel="dialog" data-transition="flip"></a>');
-    $('.dialog').click().remove();
-  });
-  showPath(feature.properties.fleet, function(path) {
-	if (path.coordinates) new GeoJSON(path).setMap(map);
-  });
+  showBusOnMap(feature);
 };

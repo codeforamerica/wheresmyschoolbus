@@ -1,12 +1,14 @@
 require 'net/http'
 require 'crack'
 require 'json'
+require 'digest/md5'
 
 module Zonar
   class Client
     def initialize(subdomain, username, password)
       @username, @password = username, password
       @api = "#{subdomain}.zonarsystems.net"
+      @cache_time = 60 # seconds
     end
 
 	  # gets all fleet_ids in the fleet.
@@ -38,12 +40,19 @@ module Zonar
     end
     
     def fetch(params, format='json')
-      data = get(params)
-      if format == 'xml'
-        return Crack::XML.parse(data.body)
-      else
-        return JSON.parse(data.body)
+      digest = Digest::MD5.hexdigest(params.to_json)
+      if (cached = Rails.cache.read(digest)) && (Time.now.to_i - @cache_time < cached)
+        return Rails.cache.read("#{digest}_cache")
       end
+      data = get(params)      
+      if format == 'xml'
+        data = Crack::XML.parse(data.body)
+      else
+        data = JSON.parse(data.body)
+      end
+      Rails.cache.write(digest, Time.now.to_i)
+      Rails.cache.write("#{digest}_cache", data)
+      return data
     end
     
     def get(uri)

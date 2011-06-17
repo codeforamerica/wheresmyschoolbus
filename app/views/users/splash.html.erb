@@ -1,8 +1,10 @@
 <% content_for :signin_path do %>
-  <%= link_to "user sign in", new_user_session_path, {:class => "sign_in_out"} %>
+  <%= link_to "User Sign In", new_user_session_path, {:class => "sign_in_out button"} %>
 <%end%>
 
 <h1>Where's My School Bus</h1>
+<div>
+
 <h2 class="break" >Real-time school bus locations anytime, anywhere.</h1>
  <br> 
 Where’s My School Bus makes real-time bus information available online for parents and guardians in Boston Public Schools. Your student’s bus is displayed on a detailed map, showing both its recent and current location. Waiting at the stop for a late bus? Blizzard got traffic moving at a crawl? Use your smartphone or computer to instantly check the bus location. Tracking your student’s bus has never been easier, faster or more accurate.
@@ -20,3 +22,6 @@ Monday through Friday:
 ● You will receive and email containing a link to activate your account. After signing up, guardian can track only the bus numbers in account.
  <br> 
 ● You can add nicknames to busses. To modify the bus numbers displayed in account, you must call BPS.
+</div>
+<br>
+  <%= link_to "User Sign In", new_user_session_path, {:class => "button"} %>

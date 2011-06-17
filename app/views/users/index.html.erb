@@ -7,7 +7,7 @@
     <th></th>
     <th></th>
   </tr>
-<% @users.each do |user| %>
+<% @users.each do |user| {:class => "sign_in_out button dark"} %> 
   <tr>
     <td><%= "#{user.last_name}, #{user.first_name}" %></td>
     <td><%= user.email %></td>

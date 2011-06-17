@@ -19,7 +19,7 @@
         <% if content_for? :signin_path %>
           <%= yield :signin_path %>
         <% else %>
-          <%= link_to "administrator signin", new_admin_session_path, {:class => "sign_in_out"} %>
+          <%= link_to "Administrator Sign In", new_admin_session_path, {:class => "sign_in_out button dark"} %>
         <%end%>
       <%end%>
     </div>

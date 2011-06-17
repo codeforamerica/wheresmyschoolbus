@@ -14,7 +14,7 @@
     <div id="wmsblogo">
       <%= image_tag "wmsb.png", :alt=>"where's my school bus" %>
       <% if admin_signed_in? %>
-        <%= link_to "sign out", destroy_admin_session_path, {:class => "sign_in_out"} %>
+        <%= link_to "Sign Out", destroy_admin_session_path, {:class => "sign_in_out button"} %>
       <% else %>
         <% if content_for? :signin_path %>
           <%= yield :signin_path %>

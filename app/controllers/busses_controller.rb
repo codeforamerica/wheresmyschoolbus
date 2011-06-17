@@ -28,6 +28,24 @@ class BussesController < ApplicationController
     end
   end
   
+    def update_nicknames
+    @user = current_user
+    allowable_busses = params[:user][:busses_attributes].select {|i,b| b["id"].present?}
+    respond_to do |format|
+      if @user.update_attributes(:busses_attributes=>allowable_busses)
+        @user.save
+        #format.html { redirect_to(@user, :notice => 'User was successfully updated.') }
+        #format.xml  { head :ok }
+        puts "SUCCESS"
+      else
+        @fleet_ids = $zonar.fleet["assetlist"]["assets"].map {|a| a["fleet"]}
+        #format.html { render :action => "edit" }
+        #format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
+        puts "FAILURE"
+      end
+    end
+  end
+
   private
   def fetch_bus_locations(busses)
     busses.map do |b|

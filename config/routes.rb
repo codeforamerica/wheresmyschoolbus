@@ -5,6 +5,9 @@ Wheresmybus::Application.routes.draw do
     member do
       get 'path'
     end
+    collection do
+      post "update_nicknames"
+    end
   end
 
   devise_for :admins

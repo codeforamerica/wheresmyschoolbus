@@ -60,17 +60,17 @@
           <h1>Edit Bus Names</h1>
         </div>
         <div data-role="content"> 
-          <form action="/update_names" method="post"> 
+          <%= form_for current_user, :url => update_nicknames_busses_path, :html=>{:method=>:post} do |f| %>
             <fieldset> 
-              <%- @busses.each do |bus| %>
+              <%= f.fields_for :busses do |bf| %>
                 <div data-role="fieldcontain">
-                    <label for="name">Bus Nickname:</label>
-                    <input type="text" name="<%= bus[:properties]['fleet'] %>" id="name" value="<%= bus[:properties]['fleet'] %>"  />
+                  <%= bf.label :nickname %>
+                  <%= bf.text_field :nickname, :value=>bf.object.nickname %>
                 </div>
-              <%- end %>
+              <% end %>
               <button type="submit" data-theme="a" name="submit" value="true">Update Names</button> 
             </fieldset> 
-          </form>
+          <% end %>
     		</div>
       </div>
     <% end -%>

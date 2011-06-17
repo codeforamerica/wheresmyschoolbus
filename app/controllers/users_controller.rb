@@ -6,7 +6,7 @@ class UsersController < ApplicationController
       User.where("email like :q or first_name like :q or last_name like :q",:q=>"%#{params[:q]}%")
     else
       User.all
-    end
+    end.paginate :page=>params[:page]
 
     respond_to do |format|
       format.html # index.html.erb

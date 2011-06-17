@@ -16,6 +16,7 @@
     <td><%= link_to 'Delete Account', user, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
+<%= will_paginate @users %>
 </table>
 
 <br />

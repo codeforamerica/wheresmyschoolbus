@@ -1,5 +1,8 @@
 class User < ActiveRecord::Base
   has_many :busses
+  
+  cattr_reader :per_page
+  @@per_page = 20
 
   accepts_nested_attributes_for :busses, :allow_destroy=>true, :reject_if=>lambda {|b| b["fleet_id"].blank? && b["id"].blank?}
   # Include default devise modules. Others available are:

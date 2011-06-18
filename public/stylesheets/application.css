@@ -24,11 +24,14 @@ body {
 
 h1, h2, h3, h4, h5 { 
   color: #707070;
-  font-family: 'Oswald';
+  font: 13.34px helvetica,arial,freesans,clean,sans-serif;
 }
 
-h1 { font-size: 1.95em; line-height: 50px  }
-h2 { font-family: 'Tahoma'; font-size: 1.35em;color: black; float: left; margin: 0px 0px 10px;  }
+a {text-decoration: none;}
+
+
+h1 { font-size: 200%; padding-top: .5em; margin-top: 1.5em; color: #000; font-family: "Oswald" }
+h2 { font-size: 150%; }
 h3 { font-size: 1.25em; }
 h4 { font-size: 1.15em; }
 h5 { font-size: .9em; }
@@ -43,7 +46,7 @@ h5 { font-size: .9em; }
 }
 
 #header {
-  width: 80%;
+  width: 100%;
   height: 150px;
   font-family: 'Oswald', arial, serif;
 }
@@ -52,23 +55,41 @@ h5 { font-size: .9em; }
   position: relative;
 }
 
+.screenshot {
+  float: left;
+  margin: 58px 22px 100px 0px;
+}
+
+.splash_info {
+  float: right;
+  width: 458px;
+}
+
 .built-in-boston {
   position: absolute;
   right: 0px;
-  top: 110px;
+  top: 150px;
+  z-index: 555;
 }
 
 .sign_in_out {
   float: right;
   position:relative;
-  top:125px;
+  top: 10px;
+  z-index: 555;
+  right: 10px;
 }
 
 .sign_in_out:active {
-  top:125px !important;
+  top:10px !important;
 }
 .sign_in_out:hover {
   background-color: black !important;
+}
+
+#content {
+  width: 400px;
+  margin: 20px auto;
 }
 
 #main {
@@ -92,12 +113,13 @@ table {
 }
 
 .user_panel {
-  width: 600px;
+  overflow: auto;
+  width: 800px;
   margin: 0 auto;
   font-family: 'News Cycle', arial, serif;
   text-align:left;
   min-height: 35px;
-  padding-top:45px;
+  padding-top:10px;
   padding-bottom:20px;
 }
 

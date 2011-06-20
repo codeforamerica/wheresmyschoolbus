@@ -143,6 +143,7 @@ table {
 #left_splash_containter {
 	height: 100%;
 }
+.right { float: right;}
 input {
   background-color: #fff;
 }

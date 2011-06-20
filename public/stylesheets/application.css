@@ -140,7 +140,9 @@ table {
   padding-top:10px;
   padding-bottom:20px;
 }
-
+#left_splash_containter {
+	height: 100%;
+}
 input {
   background-color: #fff;
 }

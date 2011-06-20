@@ -36,6 +36,17 @@ h3 { font-size: 1.25em; }
 h4 { font-size: 1.15em; }
 h5 { font-size: .9em; }
 
+ul.list-tick {
+  margin: 0;
+  padding: 0;
+}
+ul.list-tick li {
+  margin: 0;
+  padding: 1px 0 1px 25px;
+  list-style: none;
+  background: url('/images/tick1.png') no-repeat top left;
+}
+
 #container {
   width: 960px;
   border: 1px solid red;

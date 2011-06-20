@@ -28,11 +28,13 @@ h1, h2, h3, h4, h5 {
 }
 h6 { 
   color:  #707070;
-  font:  13.34px helvetica,arial,freesans,clean,sans-serif;
+  font:  12.34px helvetica,arial,freesans,clean,sans-serif;
+  font: 10.34px helvetica,arial,freesans,clean,sans-serif;
   font-size: 120%;
-  padding:  0.9px -0.5px 7px;
-}
-
+  padding: 0.9px -0.2 0.7px 7px;
+  margin: 0 18pt -0.3pt;
+  line-height: 140%;
+  }
 
 a {text-decoration: none;}
 

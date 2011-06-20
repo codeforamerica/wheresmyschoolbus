@@ -71,7 +71,7 @@
               <%= f.fields_for :busses do |bf| %>
                 <div data-role="fieldcontain">
                   <%= bf.label :nickname, "#{bf.object.fleet_id}'s nickname" %>
-                  <%= bf.text_field :nickname, :value => bf.object.nickname %>
+                  <%= bf.text_field :nickname %>
                 </div>
               <% end %>
               <button type="submit" data-theme="a" name="submit" value="true">Update Names</button> 

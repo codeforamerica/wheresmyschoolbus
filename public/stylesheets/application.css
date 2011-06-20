@@ -26,6 +26,13 @@ h1, h2, h3, h4, h5 {
   color: #707070;
   font: 13.34px helvetica,arial,freesans,clean,sans-serif;
 }
+h6 { 
+  color:  #707070;
+  font:  13.34px helvetica,arial,freesans,clean,sans-serif;
+  font-size: 120%;
+  padding:  0.9px -0.5px 7px;
+}
+
 
 a {text-decoration: none;}
 

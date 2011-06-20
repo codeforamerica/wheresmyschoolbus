@@ -15,7 +15,7 @@
     <script src="javascripts/geojson-to-google-maps.js"></script>  
     <script type="text/javascript">
       var busses = {}
-      JSON.parse('<%= @busses.to_json.html_safe %>').map(function(bus) {
+      JSON.parse("<%= @busses.to_json.html_safe.gsub('"', '\"') %>").map(function(bus) {
         busses[bus.properties.fleet] = bus;
       });
       $(function() {

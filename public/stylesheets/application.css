@@ -74,7 +74,12 @@ ul.list-tick li {
 #wmsblogo {
   position: relative;
 }
-
+#notice {
+	background-color: #EBBE1D;
+	padding: 4px 6px 3px 6px;
+	border-radius: 2px;
+	color: black;
+}
 .screenshot {
   float: left;
   margin: 58px 22px 100px 0px;

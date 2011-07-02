@@ -8,6 +8,7 @@
     <meta names="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <link rel="stylesheet"  href="stylesheets/jquery.mobile-1.0a4.1.min.css" />
     <link rel="stylesheet"  href="stylesheets/mobile.css" />
+    <script src="javascripts/json2.js"></script>
     <script src="javascripts/jquery.min.js"></script>
     <script src="javascripts/jquery.mobile-1.0a4.1.min.js"></script>       
     <script src="javascripts/mustache.js" type="text/javascript" charset="utf-8"></script>
@@ -15,7 +16,7 @@
     <script src="javascripts/geojson-to-google-maps.js"></script>  
     <script type="text/javascript">
       var busses = {}
-      JSON.parse("<%= @busses.to_json.html_safe.gsub('"', '\"') %>").map(function(bus) {
+      $.each(JSON.parse("<%= @busses.to_json.html_safe.gsub('"', '\"') %>"), function(i, bus) {
         busses[bus.properties.fleet] = bus;
       });
       $(function() {

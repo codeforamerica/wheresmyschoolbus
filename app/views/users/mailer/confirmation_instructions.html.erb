@@ -112,7 +112,11 @@ strong{
 									  <div>
 									    <h2>Real-time school bus locations anytime, anywhere.</h2>
 </div>
-									  <a href="http://wheresmyschoolbus.heroku.com/"><img src="Projects/GreatDebate/greatdebate/blackbutton.png" width="120" height="39" align="right"></a><br></td>
+
+                        <%= link_to confirmation_url(@resource, :confirmation_token => @resource.confirmation_token), do %>
+                            <img src="http://schoolbus.heroku.com/images/email/blackbutton.png" width="120" height="39" align="right">
+                        <% end %>
+						<br></td>
 						  </tr>
 								<tr style="margin: 0; padding: 0; border: 0;">
 								  <td align="right" style="margin: 0; padding: 0; border: 0;"><span style="font-family: Helvetica, Arial, sans-serif; font-size: 15px; color: #949494; text-align: left;">Or <%= link_to 'click here', confirmation_url(@resource, :confirmation_token => @resource.confirmation_token) %> to activate your account.</span></td>

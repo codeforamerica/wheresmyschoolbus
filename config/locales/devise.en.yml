@@ -41,7 +41,7 @@ en:
       failure: 'Could not authorize you from %{kind} because "%{reason}".'
     mailer:
       confirmation_instructions:
-        subject: 'Confirmation instructions'
+        subject: "Where's My School Bus - Account Activation"
       reset_password_instructions:
         subject: 'Reset password instructions'
       unlock_instructions:

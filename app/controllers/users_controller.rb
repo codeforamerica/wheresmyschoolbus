@@ -102,6 +102,19 @@ class UsersController < ApplicationController
     end
   end
   
+  #get
+  def confirm_destroy_all
+  end
+  
+  #delete
+  def destroy_all
+    User.destroy_all
+    respond_to do |format|
+      format.html { redirect_to(users_path, :notice => 'All users were successfully deleted.') }
+      format.xml  { head :ok }
+    end
+  end
+  
   private
   def render_csv(filename)
     csv_data = CSV.generate {|csv| yield csv}

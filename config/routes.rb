@@ -24,7 +24,12 @@ Wheresmybus::Application.routes.draw do
   end
   
   # this has to be after the devise_for, so that the devise routes take precedence
-  resources :users
+  resources :users do
+    collection do
+      get "confirm_destroy_all"
+      delete "destroy_all"
+    end
+  end
   
   get "/welcome" => "users#splash"
   

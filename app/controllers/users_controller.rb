@@ -3,6 +3,7 @@ class UsersController < ApplicationController
   
   def index
     @users = if params[:q]
+      @q = params[:q]
       User.where("email like :q or first_name like :q or last_name like :q",:q=>"%#{params[:q].downcase}%")
     else
       User.all

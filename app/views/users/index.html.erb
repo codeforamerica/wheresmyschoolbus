@@ -22,7 +22,7 @@
     <%= f.text_field :search_box,:name=>"q" %>	
   </div>
 <%end%>
-
+<%= link_to 'Download this sets as CSV', users_path(:format=>"csv", :q=>@q) %>
 </table>
 
 <br />

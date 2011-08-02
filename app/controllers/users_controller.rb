@@ -1,3 +1,4 @@
+require 'csv'
 class UsersController < ApplicationController
   before_filter :authenticate_admin!, :except => [:splash]
   
@@ -15,8 +16,11 @@ class UsersController < ApplicationController
         render
       end
       format.xml  { render :xml => @users }
-      format.csv  do
-        #stub
+      format.csv do
+        prefix = @q.present? ? @q.gsub(/\s+/,'_') : "all"
+        render_csv(prefix+"_emails.csv") do |csv|
+          @users.each {|u| csv << [u.email]}
+        end
       end
     end
   end
@@ -96,5 +100,11 @@ class UsersController < ApplicationController
       format.html { redirect_to(users_path, :notice => 'User was successfully deleted.') }
       format.xml  { head :ok }
     end
+  end
+  
+  private
+  def render_csv(filename)
+    csv_data = CSV.generate {|csv| yield csv}
+    send_data csv_data, :type=> "text/csv", :filename=> filename, :disposition => "attachment"
   end
 end

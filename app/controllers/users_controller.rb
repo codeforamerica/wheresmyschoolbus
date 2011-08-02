@@ -7,11 +7,17 @@ class UsersController < ApplicationController
       User.where("email like :q or first_name like :q or last_name like :q",:q=>"%#{params[:q].downcase}%")
     else
       User.all
-    end.paginate :page=>params[:page]
+    end
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html do
+        @users = @users.paginate :page=>params[:page]
+        render
+      end
       format.xml  { render :xml => @users }
+      format.csv  do
+        #stub
+      end
     end
   end
 

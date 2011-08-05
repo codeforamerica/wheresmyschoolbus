@@ -1,4 +1,5 @@
 <h2>List of Users</h2>
+<%= link_to 'New User', new_user_path, {:class => "primary button"} %>
 <table>
   <tr>
     <th>Name</th>
@@ -22,13 +23,8 @@
     <%= f.text_field :search_box,:name=>"q" %>	
   </div>
 <%end%>
-<%= link_to 'Download this sets as CSV', users_path(:format=>"csv", :q=>@q) %>
 </table>
-
-<br />
-
-<div class="user_links">  
-  <%= link_to 'New User', new_user_path, {:class => "primary button"} %>
-  <br/>
-  <%= link_to 'Delete all users', confirm_destroy_all_users_path %>
+<div class="user_links">
+	<%= link_to 'Export as CSV', users_path(:format=>"csv", :q=>@q), :class => "export_link" %>  |  
+	<%= link_to 'Delete All Users', confirm_destroy_all_users_path, :class => "delete_link" %>
 </div>

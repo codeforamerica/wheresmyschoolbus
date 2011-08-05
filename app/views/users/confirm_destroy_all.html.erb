@@ -1,2 +1,2 @@
-<h1>Warning, this will really delete all the users in the database. it is not reversable.</h1>
-<%= link_to 'DELETE ALL USERS', destroy_all_users_path, :confirm => 'Are you sure?', :method => :delete %>
+<span class="warning">Warning: this will delete all the users in the database and is NOT reversible.</span>
+<div class="warning_confirm"><%= link_to 'I understand and want to delete all users »', destroy_all_users_path, :confirm => 'Are you really sure? This cannot be undone.', :method => :delete, :class => "warning_confirm_text" %></div>

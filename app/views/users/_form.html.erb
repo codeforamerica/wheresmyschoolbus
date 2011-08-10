@@ -26,6 +26,13 @@
                     What is the e-mail address of the user? They will use this to log in.
                   </div>
                 </div>
+                <div class="form-item form-item-labeled" id="edit-menu-link-title-wrapper">
+                  <%= f.label :student_ids %><br />
+                  <%= f.text_field :student_ids, {:class => "form-text fluid"}%>
+                  <div class="description">
+                    Which student ID(s) is/are this user following?
+                  </div>
+                </div>
               </div>
             </fieldset>
             <fieldset class="menu-item-form fieldset titled collapsible collapsed tao-processed">

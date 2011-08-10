@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110616234137) do
+ActiveRecord::Schema.define(:version => 20110810004518) do
 
   create_table "admins", :force => true do |t|
     t.string   "email",                             :default => "", :null => false
@@ -54,6 +54,7 @@ ActiveRecord::Schema.define(:version => 20110616234137) do
     t.datetime "confirmation_sent_at"
     t.string   "first_name"
     t.string   "last_name"
+    t.string   "student_ids"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

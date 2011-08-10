@@ -3,7 +3,7 @@
   <div id="content-wrapper">
     <div>
       <div class="form form-layout-default clear-block">
-        <%= form_for(@user) do |f| %>
+        <%= nested_form_for(@user) do |f| %>
           <% if @user.errors.any? %>
             <div id="error_explanation">
               <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
@@ -38,10 +38,10 @@
                     <div class="description">
                       Choose a bus that this user is allowed to see the location of.
                     </div>
-                    <%= bf.label :_destroy, "Remove This Bus" %>
-                    <%= bf.check_box :_destroy %>
+                    <%= bf.link_to_remove "Remove This Bus" %>
                   </div>
               <%end%>
+              <%= f.link_to_add "Add a new Bus", :busses %>
             </div>                      
             </fieldset>
             <div class="buttons">

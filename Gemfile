@@ -10,7 +10,7 @@ gem 'devise'
 gem 'crack'
 gem 'dalli'
 gem "will_paginate", "~> 3.0.pre2"
-
+gem "nested_form"
 # Use unicorn as the web server
 # gem 'unicorn'
 

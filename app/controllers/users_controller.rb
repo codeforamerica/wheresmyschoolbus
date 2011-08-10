@@ -52,7 +52,6 @@ class UsersController < ApplicationController
   # GET /users/1/edit
   def edit
     @user = User.find(params[:id])
-    @user.busses_attributes = {"0"=>{"fleet_id"=>"none"}} # add a temp new one
     @fleet_ids = $zonar.fleet["assetlist"]["assets"].map {|a| a["fleet"]}
   end
 

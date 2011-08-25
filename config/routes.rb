@@ -7,6 +7,8 @@ Wheresmybus::Application.routes.draw do
     end
     collection do
       post "update_nicknames"
+      get "confirm_destroy_all"
+      delete "destroy_all"
     end
   end
 

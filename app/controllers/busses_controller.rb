@@ -1,7 +1,10 @@
 class BussesController < ApplicationController
   #TODO: before_filter :auth_user_or_admin
   layout nil
+  layout "application", :only=>[:destroy_all, :confirm_destroy_all]
+  
   before_filter :auth_user_or_admin!
+  before_filter :authenticate_admin!, :only=>[:destroy_all, :confirm_destroy_all]
   
   def index
     if user_signed_in?
@@ -39,6 +42,19 @@ class BussesController < ApplicationController
         @fleet_ids = $zonar.fleet["assetlist"]["assets"].map {|a| a["fleet"]}
         format.html { render :partial => 'fail' }
       end
+    end
+  end
+  
+    #get
+  def confirm_destroy_all
+  end
+  
+  #delete
+  def destroy_all
+    Bus.destroy_all
+    respond_to do |format|
+      format.html { redirect_to(users_path, :notice => 'All busses were successfully deleted.') }
+      format.xml  { head :ok }
     end
   end
 

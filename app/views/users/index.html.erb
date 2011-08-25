@@ -28,5 +28,6 @@
 </table>
 <div class="user_links">
 	<%= link_to 'Export as CSV', users_path(:format=>"csv", :q=>@q), :class => "export_link" %>  |  
-	<%= link_to 'Delete All Users', confirm_destroy_all_users_path, :class => "delete_link" %>
+	<%= link_to 'Delete All Users', confirm_destroy_all_users_path, :class => "delete_link" %>  |  
+	<%= link_to 'Delete All Busses', confirm_destroy_all_busses_path, :class => "delete_link" %>
 </div>

@@ -58,6 +58,13 @@
         <% else -%>
           <p>You haven't been granted access to view any buses yet.</p>
         <% end -%>
+  		  <ul data-role="listview" data-inset="true" data-theme="c" data-dividertheme="b"> 
+          <li>
+            <a href="#help">
+              Help
+            </a>
+          </li>
+        </ul>
   		</div>
     </div>
     
@@ -81,5 +88,22 @@
     		</div>
       </div>
     <% end -%>
+    
+    <div data-role="page" data-theme="b" id="help"> 
+      <div data-role="header">
+        <h1>Help</h1>
+        <a href="#home" data-role="button" data-icon="arrow-l" data-transition="reverse slide">Buses</a>
+      </div>
+      <div data-role="content">
+        <ul data-role="listview" data-inset="true" data-theme="c" data-dividertheme="b"> 
+          <li data-role="list-divider">Frequently Asked Questions</li>
+          <li>
+            <a href="">
+              Question 1
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
   </body>
 </html>

@@ -16,3 +16,6 @@
   text-align: center;
 }
 #map_canvas { height: 330px; width: 100%; margin: 0px; padding: 0px }
+
+/* Fix text overflow on FAQ */
+.ui-btn-inner { white-space: normal; }

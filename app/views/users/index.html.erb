@@ -14,7 +14,7 @@
     <td><%= "#{user.last_name}, #{user.first_name}" %></td>
     <td><%= user.email %></td>
     <td><%= user.student_ids %></td>
-    <td><%= link_to 'Manage Busses', edit_user_path(user) %></td>
+    <td><%= link_to 'Manage Buses', edit_user_path(user) %></td>
     <td><%= link_to 'Delete Account', user, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
@@ -29,5 +29,5 @@
 <div class="user_links">
 	<%= link_to 'Export as CSV', users_path(:format=>"csv", :q=>@q), :class => "export_link" %>  |  
 	<%= link_to 'Delete All Users', confirm_destroy_all_users_path, :class => "delete_link" %>  |  
-	<%= link_to 'Delete All Busses', confirm_destroy_all_busses_path, :class => "delete_link" %>
+	<%= link_to 'Delete All Buses', confirm_destroy_all_busses_path, :class => "delete_link" %>
 </div>

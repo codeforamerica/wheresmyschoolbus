@@ -37,7 +37,7 @@
   <body>
     <div data-role="page" data-theme="b" id="home"> 
       <div data-role="header">
-        <h1>My Busses</h1>
+        <h1>My Buses</h1>
         <%= link_to "Sign Out", destroy_user_session_path, :"data-ajax"=>"false" %>
         <% if @busses.size > 0 -%>
           <a href="#edit_names" data-role="button" data-icon="delete">Edit Names</a>
@@ -46,7 +46,7 @@
       <div data-role="content"> 
         <% if @busses.size > 0 -%>
           <ul data-role="listview" data-inset="true" data-theme="c" data-dividertheme="b"> 
-            <li data-role="list-divider">Busses</li>
+            <li data-role="list-divider">Buses</li>
       			<%- @busses.each do |bus| %>
         			<li>
         			  <a href="/busses/<%= bus[:properties]['fleet'] %>">
@@ -56,7 +56,7 @@
       			<%- end %>
     			</ul>
         <% else -%>
-          <p>You haven't been granted access to view any busses yet.</p>
+          <p>You haven't been granted access to view any buses yet.</p>
         <% end -%>
   		</div>
     </div>

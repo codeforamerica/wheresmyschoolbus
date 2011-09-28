@@ -82,7 +82,11 @@ ul.list-tick li {
 }
 .screenshot {
   float: left;
-  margin: 58px 22px 100px 0px;
+  margin: 80px 22px 100px 0px;
+  border-radius: 7px;
+  -moz-box-shadow: 3px 3px 4px #999; /* Firefox */
+  -webkit-box-shadow: 3px 3px 4px #999; /* Safari/Chrome */
+  : progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#999999');/* IE 5.5 - 7 */ 
 }
 
 .splash_info {

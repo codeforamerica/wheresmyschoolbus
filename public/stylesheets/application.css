@@ -730,6 +730,14 @@ div.sidebar div.view-empty {
     background:#fff;
     }
 
+#bps_logo {
+	background-image: url('../images/bps.png');
+	float: right;
+	width: 220px;
+	height: 150px;
+	margin-right: 35px;
+}
+
 /**
  * Formatting for hilighted topics.
  */

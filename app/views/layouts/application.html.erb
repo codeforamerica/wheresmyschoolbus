@@ -27,7 +27,7 @@
   
   <div id="header">
     <div id="wmsblogo">
-      <%= image_tag "wmsb.png", :alt=>"where's my school bus" %>
+      <%= image_tag "wmsb.png", :alt=>"Where's My School Bus?" %>
       <% if admin_signed_in? %>
         <%= link_to "Sign Out", destroy_admin_session_path, {:class => "sign_in_out button"} %>
       <% else %>
@@ -37,6 +37,7 @@
           <%= link_to "Administrator Sign In", new_admin_session_path, {:class => "sign_in_out button dark"} %>
         <%end%>
       <%end%>
+      <div id="bps_logo"></div>
     </div>
     <a href="http://www.bostonbuilt.org/"><img class="built-in-boston" src="/images/built_in_boston_color_fancy.png"/></a>
   </div>

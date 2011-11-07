@@ -14,7 +14,7 @@
     <td><%= "#{user.last_name}, #{user.first_name}" %></td>
     <td><%= user.email %></td>
     <td><%= user.student_ids %></td>
-    <td><%= link_to 'Manage Buses', edit_user_path(user) %></td>
+    <td><%= link_to 'Edit Account', edit_user_path(user) %></td>
     <td><%= link_to 'Delete Account', user, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>

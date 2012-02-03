@@ -12,13 +12,16 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :first_name, :last_name, :busses_attributes, :student_ids
   
-  validates_presence_of :first_name, :if=>:confirmation_sent_at?
-  validates_presence_of :last_name, :if=>:confirmation_sent_at?
-  
+  validates_presence_of :first_name, :if=>:has_signed_in?
+  validates_presence_of :last_name, :if=>:has_signed_in?
+  validates_presence_of :password, :if=>:password_required?
   validates_presence_of :password_confirmation, :if=>:password_required?
   
   private
   def password_required?
-    (confirmation_sent_at? && encrypted_password.blank?) || password.present? || password_confirmation.present?
+    sign_in_count > 0 && ((confirmation_sent_at? && encrypted_password.blank?) || password.present? || password_confirmation.present?)
+  end
+  def has_signed_in?
+    sign_in_count > 0
   end
 end

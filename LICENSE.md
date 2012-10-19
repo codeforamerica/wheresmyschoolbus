@@ -1,3 +1,5 @@
+== License
+
 Copyright (c) 2011, Code for America.
 All rights reserved.
 

@@ -1,5 +1,5 @@
 Where's My School Bus
-=============
+=====================
 
 Where’s My School Bus allows parents to access real-time bus information for Boston Public Schools. 
 Each school bus is displayed on a detailed map allowing parents up-to-date information on their phone or computer. 

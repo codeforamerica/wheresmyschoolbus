@@ -11,6 +11,7 @@ gem 'crack'
 gem 'dalli'
 gem "will_paginate", "~> 3.0.pre2"
 gem "nested_form"
+gem "rdoc"
 # Use unicorn as the web server
 # gem 'unicorn'
 
